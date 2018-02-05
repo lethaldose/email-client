@@ -3,18 +3,24 @@ import * as _ from 'lodash'
 
 const apiHost = process.env.API_HOST
 
+const trimEmails = (emails) => {
+  return emails.map((e) => e.trim())
+}
 export const sendEmail = (formData) => {
   let emailParams = {
-    to: formData.toEmailAddresses.split(','),
+    to: trimEmails(formData.toEmailAddresses.split(',')),
     subject: formData.subject,
     body: formData.emailText
   }
 
-  if (!_.isEmpty(formData.ccEmailAddresses)) {
-    emailParams.cc = formData.ccEmailAddresses.split(',')
+  let ccEmailAddresses = formData.ccEmailAddresses || ''
+  if (!_.isEmpty(ccEmailAddresses.trim())) {
+    emailParams.cc = trimEmails(formData.ccEmailAddresses.split(','))
   }
-  if (!_.isEmpty(formData.bccEmailAddresses)) {
-    emailParams.bcc = formData.bccEmailAddresses.split(',')
+
+  let bccEmailAddresses = formData.bccEmailAddresses || ''
+  if (!_.isEmpty(bccEmailAddresses.trim())) {
+    emailParams.bcc = trimEmails(formData.bccEmailAddresses.split(','))
   }
 
   return axios.post(`${apiHost}/email`, emailParams)

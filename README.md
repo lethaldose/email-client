@@ -43,3 +43,8 @@ npm run unit
 # run all tests
 npm test
 ```
+
+### Pending
+- improve messaging styles
+- improve validations
+

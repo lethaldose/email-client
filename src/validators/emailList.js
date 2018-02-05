@@ -8,6 +8,6 @@ export const emailList = value => {
     return true
   }
   const emailAddList = value.split(',')
-  const result = _.some(emailAddList, (v) => emailValidator(v) === false)
+  const result = _.some(emailAddList, (v) => emailValidator(v.trim()) === false)
   return !result
 }
