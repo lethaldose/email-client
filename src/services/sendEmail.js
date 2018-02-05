@@ -1,7 +1,7 @@
 import axios from 'axios'
-import * as lodash from 'lodash'
+import * as _ from 'lodash'
 
-const apiHost = 'http://localhost:3000'
+const apiHost = process.env.API_HOST
 
 export const sendEmail = (formData) => {
   let emailParams = {
@@ -24,6 +24,6 @@ export const sendEmail = (formData) => {
     })
     .catch(function (error) {
       console.log(error)
-      Promise.reject(error)
+      return Promise.reject(error)
     })
 }

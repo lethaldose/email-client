@@ -117,7 +117,7 @@ export default {
       sendEmail(this.form).then(() => {
         this.emailSent = true
         this.sending = false
-        // this.clearForm()
+        this.clearForm()
       }).catch(() => {
         this.emailSent = false
         this.sending = false
