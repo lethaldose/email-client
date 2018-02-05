@@ -8,7 +8,7 @@
       <md-card-content>
         <md-field :class="getValidationClass('toEmailAddresses')">
           <label for="to-email-addresses">To:</label>
-          <md-input name="to-email-addresses" id="to-email-addresses" autocomplete="given-name" v-model="form.toEmailAddresses" :disabled="sending" />
+          <md-input name="to-email-addresses" id="to-email-addresses" autocomplete="email-addresses" v-model="form.toEmailAddresses" :disabled="sending" />
           <span class="md-error" v-if="!$v.form.toEmailAddresses.required">At least 1 email address is required</span>
           <span class="md-error" v-if="$v.form.toEmailAddresses.required && !$v.form.toEmailAddresses.emailListValidator">Email address should be comma separated in valid format e.g john@example.com, doe@example.com</span>
         </md-field>
@@ -42,6 +42,8 @@
         <md-card-actions>
           <md-button type="submit" class="md-primary" :disabled="sending">Send Email</md-button>
         </md-card-actions>
+
+        <md-snackbar :md-active.sync="emailSent">Email was successfully sent!</md-snackbar>
       </md-card-content>
     </md-card>
   </form>
@@ -50,6 +52,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import {emailList} from '../validators/emailList'
+import {sendEmail} from '../services/sendEmail'
 
 import {
   required
@@ -111,12 +114,14 @@ export default {
 
     sendEmail () {
       this.sending = true
-
-      window.setTimeout(() => {
+      sendEmail(this.form).then(() => {
         this.emailSent = true
         this.sending = false
-        this.clearForm()
-      }, 1500)
+        // this.clearForm()
+      }).catch(() => {
+        this.emailSent = false
+        this.sending = false
+      })
     },
 
     validateEmailForm () {
