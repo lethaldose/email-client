@@ -3,6 +3,8 @@
     <md-card class="md-layout-item md-size-50 md-small-size-100">
       <md-card-header>
         <div class="md-title">Send Email</div>
+        <span class='error-message'>{{errorMessage}}</span>
+        <span v-if="emailSent" class='success-message'>Email Succesfully Sent</span>
       </md-card-header>
 
       <md-card-content>
@@ -70,7 +72,8 @@ export default {
       emailText: null
     },
     emailSent: false,
-    sending: false
+    sending: false,
+    errorMessage: null
   }),
   validations: {
     form: {
@@ -117,10 +120,12 @@ export default {
       sendEmail(this.form).then(() => {
         this.emailSent = true
         this.sending = false
+        this.errorMessage = null
         this.clearForm()
       }).catch(() => {
         this.emailSent = false
         this.sending = false
+        this.errorMessage = 'Error occured while sending email. Please try again!'
       })
     },
 
@@ -136,6 +141,12 @@ export default {
 </script>
 
 <style scoped>
+  .error-message {
+    color: red;
+  }
+  .success-message {
+    color: green;
+  }
   .md-progress-bar {
     position: absolute;
     top: 0;
