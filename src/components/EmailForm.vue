@@ -14,6 +14,22 @@
           </md-field>
         </div>
 
+         <div class="md-layout md-gutter">
+          <md-field :class="getValidationClass('ccEmailAddresses')">
+            <label for="cc-email-addresses">Cc:</label>
+            <md-input name="cc-email-addresses" id="cc-email-addresses" autocomplete="cc-email-addresses" v-model="form.ccEmailAddresses" :disabled="sending" />
+            <span class="md-error" v-if="!$v.form.ccEmailAddresses.emailListValidator">Email address should be comma separated in valid format e.g john@example.com, doe@example.com</span>
+          </md-field>
+        </div>
+
+        <div class="md-layout md-gutter">
+          <md-field :class="getValidationClass('bccEmailAddresses')">
+            <label for="bcc-email-addresses">Bcc:</label>
+            <md-input name="bcc-email-addresses" id="bcc-email-addresses" autocomplete="bcc-email-addresses" v-model="form.bccEmailAddresses" :disabled="sending" />
+            <span class="md-error" v-if="!$v.form.bccEmailAddresses.emailListValidator">Email address should be comma separated in valid format e.g john@example.com, doe@example.com</span>
+          </md-field>
+        </div>
+
         <div class="md-layout md-gutter">
           <md-field :class="getValidationClass('subject')">
             <label for="subject">Subject:</label>
@@ -53,7 +69,11 @@ export default {
   mixins: [validationMixin],
   data: () => ({
     form: {
-      toEmailAddresses: null
+      toEmailAddresses: null,
+      ccEmailAddresses: null,
+      bccEmailAddresses: null,
+      subject: null,
+      emailText: null
     },
     emailSent: false,
     sending: false
@@ -62,6 +82,12 @@ export default {
     form: {
       toEmailAddresses: {
         required,
+        emailList
+      },
+      ccEmailAddresses: {
+        emailList
+      },
+      bccEmailAddresses: {
         emailList
       },
       subject: {
@@ -86,6 +112,8 @@ export default {
     clearForm () {
       this.$v.$reset()
       this.form.toEmailAddresses = null
+      this.form.ccEmailAddresses = null
+      this.form.bccEmailAddresses = null
       this.form.subject = null
       this.form.emailText = null
     },
