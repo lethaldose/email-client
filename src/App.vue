@@ -3,9 +3,9 @@
     <div class="md-display-1 heading">Email Client</div>
     <div>
       <md-tabs md-sync-route>
-        <md-tab id="tab-home" md-label="Home" to="/">
+        <md-tab id="tab-dashboard" md-label="Email" to="/">
         </md-tab>
-        <md-tab id="tab-dashboard" md-label="Email" to="/email">
+        <md-tab id="tab-home" md-label="Metrics" to="/metrics">
         </md-tab>
       </md-tabs>
     </div>

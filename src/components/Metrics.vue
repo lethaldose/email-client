@@ -1,10 +1,8 @@
-import EmailForm from '@/components/EmailForm'
-
 <template>
   <div class="home-container">
     <md-card class="md-layout-item md-size-50 md-small-size-100">
       <md-card-header>
-        <div class="md-title">Dashboard</div>
+        <div class="md-title">Metrics</div>
       </md-card-header>
       <md-card-content>
       </md-card-content>
@@ -14,10 +12,9 @@ import EmailForm from '@/components/EmailForm'
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Metrics',
   data () {
     return {
-      msg: 'Email Client'
     }
   }
 }
