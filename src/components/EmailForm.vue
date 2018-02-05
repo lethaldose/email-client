@@ -4,47 +4,38 @@
       <md-card-header>
         <div class="md-title">Send Email</div>
       </md-card-header>
+
       <md-card-content>
-        <div class="md-layout md-gutter">
-          <md-field :class="getValidationClass('toEmailAddresses')">
-            <label for="to-email-addresses">To:</label>
-            <md-input name="to-email-addresses" id="to-email-addresses" autocomplete="given-name" v-model="form.toEmailAddresses" :disabled="sending" />
-            <span class="md-error" v-if="!$v.form.toEmailAddresses.required">At least 1 email address is required</span>
-            <span class="md-error" v-if="$v.form.toEmailAddresses.required && !$v.form.toEmailAddresses.emailListValidator">Email address should be comma separated in valid format e.g john@example.com, doe@example.com</span>
-          </md-field>
-        </div>
+        <md-field :class="getValidationClass('toEmailAddresses')">
+          <label for="to-email-addresses">To:</label>
+          <md-input name="to-email-addresses" id="to-email-addresses" autocomplete="given-name" v-model="form.toEmailAddresses" :disabled="sending" />
+          <span class="md-error" v-if="!$v.form.toEmailAddresses.required">At least 1 email address is required</span>
+          <span class="md-error" v-if="$v.form.toEmailAddresses.required && !$v.form.toEmailAddresses.emailListValidator">Email address should be comma separated in valid format e.g john@example.com, doe@example.com</span>
+        </md-field>
 
-         <div class="md-layout md-gutter">
-          <md-field :class="getValidationClass('ccEmailAddresses')">
-            <label for="cc-email-addresses">Cc:</label>
-            <md-input name="cc-email-addresses" id="cc-email-addresses" autocomplete="cc-email-addresses" v-model="form.ccEmailAddresses" :disabled="sending" />
-            <span class="md-error" v-if="!$v.form.ccEmailAddresses.emailListValidator">Email address should be comma separated in valid format e.g john@example.com, doe@example.com</span>
-          </md-field>
-        </div>
+        <md-field :class="getValidationClass('ccEmailAddresses')">
+          <label for="cc-email-addresses">Cc:</label>
+          <md-input name="cc-email-addresses" id="cc-email-addresses" autocomplete="cc-email-addresses" v-model="form.ccEmailAddresses" :disabled="sending" />
+          <span class="md-error" v-if="!$v.form.ccEmailAddresses.emailListValidator">Email address should be comma separated in valid format e.g john@example.com, doe@example.com</span>
+        </md-field>
 
-        <div class="md-layout md-gutter">
-          <md-field :class="getValidationClass('bccEmailAddresses')">
-            <label for="bcc-email-addresses">Bcc:</label>
-            <md-input name="bcc-email-addresses" id="bcc-email-addresses" autocomplete="bcc-email-addresses" v-model="form.bccEmailAddresses" :disabled="sending" />
-            <span class="md-error" v-if="!$v.form.bccEmailAddresses.emailListValidator">Email address should be comma separated in valid format e.g john@example.com, doe@example.com</span>
-          </md-field>
-        </div>
+        <md-field :class="getValidationClass('bccEmailAddresses')">
+          <label for="bcc-email-addresses">Bcc:</label>
+          <md-input name="bcc-email-addresses" id="bcc-email-addresses" autocomplete="bcc-email-addresses" v-model="form.bccEmailAddresses" :disabled="sending" />
+          <span class="md-error" v-if="!$v.form.bccEmailAddresses.emailListValidator">Email address should be comma separated in valid format e.g john@example.com, doe@example.com</span>
+        </md-field>
 
-        <div class="md-layout md-gutter">
-          <md-field :class="getValidationClass('subject')">
-            <label for="subject">Subject:</label>
-            <md-input name="subject" id="subject" autocomplete="subject" v-model="form.subject" :disabled="sending" />
-            <span class="md-error" v-if="!$v.form.subject.required">Subject is required</span>
-          </md-field>
-        </div>
+        <md-field :class="getValidationClass('subject')">
+          <label for="subject">Subject:</label>
+          <md-input name="subject" id="subject" autocomplete="subject" v-model="form.subject" :disabled="sending" />
+          <span class="md-error" v-if="!$v.form.subject.required">Subject is required</span>
+        </md-field>
 
-        <div class="md-layout md-gutter">
-          <md-field :class="getValidationClass('emailText')">
-            <label for="emailText">Email Body:</label>
-            <md-textarea rows="20" cols="100" name="emailText" id="emailText" autocomplete="email-body" v-model="form.emailText" :disabled="sending" />
-            <span class="md-error" v-if="!$v.form.emailText.required">Email body is required</span>
-          </md-field>
-        </div>
+        <md-field :class="getValidationClass('emailText')">
+          <label for="emailText">Email Body:</label>
+          <md-textarea rows="20" cols="100" name="emailText" id="emailText" autocomplete="email-body" v-model="form.emailText" :disabled="sending" />
+          <span class="md-error" v-if="!$v.form.emailText.required">Email body is required</span>
+        </md-field>
 
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
