@@ -8,7 +8,13 @@
     - Email Form Component - to send emails
     - Metrics Component - number of emails sent and failed
 
-![Email Client Home Screen](https://raw.githubusercontent.com/lethaldose/email-client/docs/email-client-tabs.gif)
+- Email Form Interaction:
+    - To, cc and bcc fields expects multiple email address which are comma separated
+    - e.g. john@example.com, bar@example.com
+
+![Email Client Home Screen](https://raw.githubusercontent.com/lethaldose/email-client/master/docs/email-client-tabs.gif)
+
+![Send Email Form](https://raw.githubusercontent.com/lethaldose/email-client/master/docs/send-email-form.gif)
 
 ### Design
 
